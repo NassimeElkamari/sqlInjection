@@ -1,0 +1,32 @@
+<div style="max-width: 320px; margin: 100px auto; padding: 40px; background: #ffffff; border-radius: 15px; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); text-align: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <h2 style="margin-bottom: 20px; font-size: 24px; color: #1e3a8a; font-weight: bold;">Welcome Back</h2>
+  
+  <form (submit)="login()">
+    <input 
+      type="text" 
+      [(ngModel)]="username" 
+      name="username" 
+      placeholder="Username" 
+      style="width: 100%; padding: 10px 15px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; margin-bottom: 15px; transition: all 0.3s ease;" 
+    />
+    
+    <input 
+      type="password" 
+      [(ngModel)]="password" 
+      name="password" 
+      placeholder="Password" 
+      style="width: 100%; padding: 10px 15px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; margin-bottom: 20px; transition: all 0.3s ease;" 
+    />
+    
+    <button 
+      type="submit" 
+      style="width: 100%; padding: 10px 15px; background-color: #2563eb; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 16px; transition: background-color 0.3s ease;"
+      onmouseover="this.style.backgroundColor='#1e40af'"
+      onmouseout="this.style.backgroundColor='#2563eb'"
+    >
+      Login
+    </button>
+  </form>
+
+  <p *ngIf="response" style="margin-top: 20px; color: #16a34a; font-weight: 500;">{{ response }}</p>
+</div>
