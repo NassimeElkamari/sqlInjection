@@ -1,0 +1,76 @@
+<div class="student-dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar" [class.collapsed]="isCollapsed">
+      <div class="logo">🎓 {{ student?.username || 'Student' }}</div>
+      <nav>
+        <ul>
+          <li (click)="setPage('profile')" [class.active]="currentPage === 'profile'">Profile</li>
+          <li (click)="setPage('courses')" [class.active]="currentPage === 'courses'">My Courses</li>
+          <li (click)="setPage('grades')" [class.active]="currentPage === 'grades'">Grades</li>
+          <li (click)="setPage('messages')" [class.active]="currentPage === 'messages'">Messages</li>
+          <li (click)="setPage('logout')" class="logout">Logout</li>
+        </ul>
+      </nav>
+      <button class="collapse-btn" (click)="toggleSidebar()">☰</button>
+    </aside>
+  
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <h1>Welcome, {{ student?.username || 'Student' }} 👋</h1>
+      </header>
+  
+      <section class="content">
+        <ng-container *ngIf="currentPage === 'profile'">
+          <h2>Profile</h2>
+          <div class="profile-box" *ngIf="student">
+            <img src="assets/profile.png" alt="avatar" />
+            <div>
+              <p><strong>Name:</strong> {{ student.username }}</p>
+              <p><strong>Email:</strong> {{ student.email }}</p>
+              <p><strong>Student Id:</strong> {{ student.studentNumber || 'Not specified' }}</p>
+              <p><strong>Department:</strong> {{ student.department || 'Not specified' }}</p>
+            </div>
+          </div>
+        </ng-container>
+  
+        <ng-container *ngIf="currentPage === 'courses'">
+          <h2>My Courses</h2>
+          <ul class="course-list">
+            <li>Algorithms & Data Structures</li>
+            <li>Web Development</li>
+            <li>Database Systems</li>
+            <li>Cybersecurity Basics</li>
+          </ul>
+        </ng-container>
+  
+        <ng-container *ngIf="currentPage === 'grades'">
+          <h2>Grades</h2>
+          <table>
+            <thead>
+              <tr><th>Course</th><th>Grade</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Algorithms</td><td>90</td></tr>
+              <tr><td>Web Dev</td><td>88</td></tr>
+              <tr><td>Databases</td><td>92</td></tr>
+              <tr><td>Cybersecurity</td><td>85</td></tr>
+            </tbody>
+          </table>
+        </ng-container>
+  
+        <ng-container *ngIf="currentPage === 'messages'">
+          <h2>Messages</h2>
+          <div class="message-box">
+            <p><strong>Prof. Smith:</strong> Don't forget the project deadline!</p>
+            <p><strong>Admin:</strong> Please verify your email by tomorrow.</p>
+          </div>
+        </ng-container>
+  
+        <ng-container *ngIf="currentPage === 'logout'">
+          <h2>Logging out...</h2>
+        </ng-container>
+      </section>
+    </main>
+  </div>
+  

@@ -2,15 +2,15 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
+  selector: 'app-login-admin-safe',
   imports: [CommonModule, FormsModule],
-  templateUrl: './login.component.html'
+  templateUrl: './login-admin-safe.component.html',
+  styleUrl: './login-admin-safe.component.css'
 })
-export class LoginComponent {
+export class LoginAdminSafeComponent {
   username = '';
   password = '';
   response = '';
@@ -22,17 +22,18 @@ export class LoginComponent {
       .set('username', this.username)
       .set('password', this.password);
 
-    this.http.post('http://localhost:8080/api/login-vuln', body, { responseType: 'text' })
+    this.http.post('http://localhost:8080/api/safe/login-safe', body, { responseType: 'text' })
       .subscribe({
-        next: (res) => {
+        next: (res:any) => {
           this.response = res;
           if (res.toLowerCase().includes('success')) {
-            this.router.navigate(['/EspaceAdmin']);
+            this.router.navigate(['/EspaceAdmin']); 
           }
         },
-        error: (err) => {
+        error: () => {
           this.response = 'Login failed ❌';
         }
       });
   }
 }
+
